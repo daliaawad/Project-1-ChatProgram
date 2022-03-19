@@ -17,14 +17,7 @@ class Client:
         
         
         self.nickname = simpledialog.askstring("Nickname", "Please choose a nickname\t\t\t", parent=msg) #"\t" just to make the window wider
-        print(f" your nickname is: {self.nickname}")
-        for i in self.online_users_list:
-            if online_users[i] == self.nickname:
-                print("Oh I'm sorry but this user have been chosen by other user, please pick a different nickname we don't want to miss between both of you :*")
-            break
-        
-        self.nickname = simpledialog.askstring("Nickname", "Please choose a nickname\t\t\t", parent=msg) #"\t" just to make the window wider
-     
+       
         self.gui_done = False
         self.running = True
         

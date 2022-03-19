@@ -61,18 +61,24 @@ class Client:
         self.leave_button.pack(padx=20, pady=5)
         
         onlineUsersList = tkinter.Listbox(self.win)
-        counter = 1
-        for onlineuser in self.online_users_list:
-            onlineUsersList.insert(counter, onlineuser)
-            counter = counter + 1
+        def do_update():
+            onlineUsersList.delete(0, 'end')
+            counter = 1
+            for onlineuser in self.online_users_list:
+                onlineUsersList.insert(counter, onlineuser)
+                counter = counter + 1
+                
+                
+        def run_every_minute():
+            do_update()
+            self.win.after(6, run_every_minute)
         onlineUsersList.pack()
         
         
         self.gui_done = True
         
-        
+        run_every_minute()
         self.win.protocol("WM_DELETE_WINDOW", self.stop) #What to do when the window is closed
-        
         self.win.mainloop()
         
     def handler(self, e): #To send the input text when enter is pressed

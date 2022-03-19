@@ -1,6 +1,5 @@
 import socket
 import threading
-import ast
 import tkinter
 import tkinter.scrolledtext
 from tkinter import simpledialog
@@ -62,8 +61,11 @@ class Client:
         self.leave_button.pack(padx=20, pady=5)
         
         onlineUsersList = tkinter.Listbox(self.win)
-        for onlineuser in ast.literal_eval(self.online_users_list): #To convert the string that looks like a list into a real list
-            onlineUsersList.insert(1, onlineuser)
+        counter = 1
+        for onlineuser in self.online_users_list:
+            print(onlineuser, "onlineeeeeee")
+            onlineUsersList.insert(counter, onlineuser)
+            counter = counter + 1
         onlineUsersList.pack()
         
         
@@ -96,11 +98,7 @@ class Client:
             try:
                 message = self.sock.recv(1024).decode('utf-8')
                 if "online_users" in message:
-                    self.online_users_list = message.split("online_users")[0]
-                    print(self.online_users_list, "askdaosdjaosjajfejaf")
-                    #for i, onlineUser in self.onlineUsersList.curselection():
-                        #self.onlineUsersList.insert(1, onlineUsers[0])
-                        #print(f"{message} kkkkkkkkkkkkkkkkkkkkkkkkkk")
+                    self.online_users_list = message.split("online_users")[0].split(' ') #Last split is to convert the string into a list
                 elif message == "send file":
                     print("recieving file")
                     data = client.recv(1024)

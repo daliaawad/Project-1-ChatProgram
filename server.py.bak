@@ -78,7 +78,7 @@ def receive():
     
         print(f"Nickname of the client is {nickname}")
         broadcast(f"{nickname} connected to the server!\n".encode('utf-8'))
-        broadcast(f"{nicknames} online_users".encode('utf-8'))#To send the list of online users and show it in the list box
+        broadcast(f"{nicknames} online_users".encode('utf-8')) #To send the list of online users and show it in the list box
         client.send("Connected to the server".encode('utf-8'))
         
         thread = threading.Thread(target=handle, args=(client,)) #The comma just to make it as a tuple

@@ -97,6 +97,10 @@ class Client:
                 message = self.sock.recv(1024).decode('utf-8')
                 if "online_users" in message:
                     self.online_users_list = message.split("online_users")[0]
+                    print(self.online_users_list, "askdaosdjaosjajfejaf")
+                    #for i, onlineUser in self.onlineUsersList.curselection():
+                        #self.onlineUsersList.insert(1, onlineUsers[0])
+                        #print(f"{message} kkkkkkkkkkkkkkkkkkkkkkkkkk")
                 elif message == "send file":
                     print("recieving file")
                     data = client.recv(1024)
